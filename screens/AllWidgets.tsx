@@ -1,9 +1,12 @@
 /** @format */
 
-import { SafeAreaView, StyleSheet, Text, View, StatusBar } from "react-native";
+import { SafeAreaView, StyleSheet, Text, View, StatusBar, ScrollView } from "react-native";
 import React from "react";
 import { useTheme } from "react-native-paper";
 import { ThemeProps } from "../utils/theme";
+import WidgetCard from "../components/WidgetCard";
+import AddButton from "../components/AddButton";
+import { AllNotifications } from "../assets/data/allNotifications";
 
 const Component = () => {
    const theme: ThemeProps = useTheme();
@@ -11,10 +14,15 @@ const Component = () => {
 
    return (
       <SafeAreaView style={styles.screen}>
-         <View style={styles.mainContainer}>
-            <Text>main container</Text>
-         </View>
-         <StatusBar backgroundColor={theme.colors.primary} />
+         <ScrollView>
+            <View style={styles.mainContainer}>
+               {AllNotifications.map((notification, index) => {
+                  return <WidgetCard item={notification} />;
+               })}
+            </View>
+            <StatusBar backgroundColor={theme.colors.primary} />
+            <AddButton />
+         </ScrollView>
       </SafeAreaView>
    );
 };
@@ -31,6 +39,7 @@ const makeStyles = (theme: ThemeProps) =>
          backgroundColor: theme.colors.secondary,
          height: "100%",
          padding: 25,
+         gap: 20,
       },
       headerContainer: {
          flexDirection: "row",
