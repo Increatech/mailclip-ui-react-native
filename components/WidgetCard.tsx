@@ -25,7 +25,7 @@ const Component = ({ item }: Props) => {
          </View>
          {item.emails.map((item, index) => {
             return (
-               <View>
+               <View key={index}>
                   <View style={styles.messageContainer}>
                      <View style={{ gap: 3 }}>
                         <Text style={styles.subject}>Keith Mthunzi</Text>

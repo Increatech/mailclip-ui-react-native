@@ -17,7 +17,7 @@ const Component = () => {
          <ScrollView>
             <View style={styles.mainContainer}>
                {AllNotifications.map((notification, index) => {
-                  return <WidgetCard item={notification} />;
+                  return <WidgetCard key={index} item={notification} />;
                })}
             </View>
             <StatusBar backgroundColor={theme.colors.primary} />

@@ -9,9 +9,12 @@ import LabelText from "./LabelText";
 interface Props {
    placeholder: string;
    title?: string;
+   onChange?: (text: string) => void;
+   onSubmit?: (text: string) => void;
+   value?: string;
 }
 
-const Input = ({ placeholder, title }: Props) => {
+const Input = ({ placeholder, title, onChange, value, onSubmit, }: Props) => {
    const theme: ThemeProps = useTheme();
    const styles = makeStyles(theme);
 
@@ -23,6 +26,12 @@ const Input = ({ placeholder, title }: Props) => {
             placeholder={placeholder}
             style={styles.input}
             selectionColor={"#000"}
+            value={value}
+            onChangeText={onChange}
+            onSubmitEditing={({ nativeEvent }) => {
+               onSubmit(nativeEvent.text);
+            }}
+            returnKeyType="done"
          />
       </View>
    );
