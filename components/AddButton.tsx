@@ -1,23 +1,30 @@
 /** @format */
 
-import { StyleSheet, Text, View } from "react-native";
+import { StyleSheet, Text, View, Pressable } from "react-native";
 import React from "react";
 import { useTheme } from "react-native-paper";
 import { ThemeProps } from "../utils/theme";
 import Icon from "react-native-vector-icons/FontAwesome";
+import { useNavigation } from "@react-navigation/native";
 
 const AddButton = () => {
    const theme: ThemeProps = useTheme();
    const styles = makeStyles(theme);
+   const navigation = useNavigation();
+
+   //@ts-ignore
+   const goToAddNewMailClip = () => navigation.navigate("AddNewMailClip");
 
    return (
-      <View style={styles.mainContainer}>
+      <Pressable
+         onPress={goToAddNewMailClip}
+         style={styles.mainContainer}>
          <Icon
             name="plus"
             size={36}
             color={"#333"}
          />
-      </View>
+      </Pressable>
    );
 };
 
