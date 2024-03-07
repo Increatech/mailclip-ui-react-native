@@ -14,7 +14,7 @@ interface Props {
    value?: string;
 }
 
-const Input = ({ placeholder, title, onChange, value, onSubmit, }: Props) => {
+const Input = ({ placeholder, title, onChange, value, onSubmit }: Props) => {
    const theme: ThemeProps = useTheme();
    const styles = makeStyles(theme);
 
@@ -29,7 +29,7 @@ const Input = ({ placeholder, title, onChange, value, onSubmit, }: Props) => {
             value={value}
             onChangeText={onChange}
             onSubmitEditing={({ nativeEvent }) => {
-               onSubmit(nativeEvent.text);
+               if (onSubmit) onSubmit(nativeEvent.text);
             }}
             returnKeyType="done"
          />
